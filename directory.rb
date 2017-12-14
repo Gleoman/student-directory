@@ -22,8 +22,8 @@ def input_students
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(5)
+  puts "-------------".center(5)
 end
 def print(students)
   while students.count >= 1
@@ -31,13 +31,13 @@ def print(students)
         puts "#{i + 1} #{student[:name]} (#{student[:cohort]} cohort)
         hobby: #{ student[:hobbies]}
         place of birth: #{student[:born]}
-        height: #{student[:height]}"
+        height: #{student[:height]}".center(5)
     end
     break
   end
 end
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+  puts "Overall, we have #{names.count} great students".center(5)
 end
 #nothing happens until we call the methods
 students = input_students
