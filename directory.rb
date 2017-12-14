@@ -1,7 +1,8 @@
 def input_students
   puts "Please enter the following details in order, hitting return after each entry
-  i) name, ii) hobbies, iii) place of birth, iv) height"
-  puts "To finish, just hit return twice"
+  i) name, ii) cohort, iii) hobbies, iv) place of birth, v) height"
+  puts "To finish, and/or if you enter a typo and need to begin again,
+        just hit return twice"
   #create an empty array
   students = []
   #get the first name
@@ -9,10 +10,13 @@ def input_students
   #while the name is not empty, repeat this code
   while !name.empty? do
     #add the student has to the array
+    cohort = gets.chomp
     hobbies = gets.chomp
     born = gets.chomp
     height = gets.chomp
-    students << {name: name, cohort: :november, hobbies: hobbies, born: born, height: height}
+    student_hash = {name: name, cohort: cohort.to_sym, hobbies: hobbies, born: born, height: height}
+    student_hash.default = "empty"
+    students << student_hash
     puts "Now we have #{students.count} students"
     #get another name from the user
     name = gets.chomp
