@@ -1,5 +1,6 @@
 def input_students
-  puts "Please enter the names of the students"
+  puts "Please enter the following details in order, hitting return after each entry
+  i) name, ii) hobbies, iii) place of birth, iv) height"
   puts "To finish, just hit return twice"
   #create an empty array
   students = []
@@ -8,7 +9,10 @@ def input_students
   #while the name is not empty, repeat this code
   while !name.empty? do
     #add the student has to the array
-    students << {name: name, cohort: :november}
+    hobbies = gets.chomp
+    born = gets.chomp
+    height = gets.chomp
+    students << {name: name, cohort: :november, hobbies: hobbies, born: born, height: height}
     puts "Now we have #{students.count} students"
     #get another name from the user
     name = gets.chomp
@@ -24,7 +28,10 @@ end
 def print(students)
   while students.count >= 1
     students.each_with_index do |student, i|
-        puts "#{i + 1} #{student[:name]} (#{student[:cohort]} cohort)"
+        puts "#{i + 1} #{student[:name]} (#{student[:cohort]} cohort)
+        hobby: #{ student[:hobbies]}
+        place of birth: #{student[:born]}
+        height: #{student[:height]}"
     end
     break
   end
