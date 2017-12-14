@@ -14,15 +14,36 @@ def input_students
     hobbies = gets.chomp
     born = gets.chomp
     height = gets.chomp
-    student_hash = {name: name, cohort: cohort.to_sym, hobbies: hobbies, born: born, height: height}
-    student_hash.default = "empty"
-    students << student_hash
+    students << {name: name, cohort: cohort, hobbies: hobbies, born: born, height: height}
     puts "Now we have #{students.count} students"
     #get another name from the user
     name = gets.chomp
   end
   #return the array of students
   students
+end
+
+def sort_by_cohort(students)
+  sorted_by_cohort = {}
+  students.map do |student|
+    cohort = student[:cohort]
+    name = student[:name]
+
+      if sorted_by_cohort[cohort] == nil
+      sorted_by_cohort[cohort] = [name]
+      else
+      sorted_by_cohort[cohort].push(name)
+      end
+    end
+
+    puts "Please enter a cohort to list"
+    puts sorted_by_cohort
+    sorted_cohort = gets.chomp
+    sorted_by_cohort.each do |cohort, name|
+      if cohort == sorted_cohort
+        puts "#{name.join(", ")}"
+      end
+  end
 end
 
 def print_header
@@ -48,3 +69,4 @@ students = input_students
 print_header
 print(students)
 print_footer(students)
+sort_by_cohort(students)
