@@ -6,7 +6,7 @@ def input_students
   #create an empty array
   students = []
   #get the first name
-  name = gets.gsub(/\r/, "")
+  name = gets.chomp
   #while the name is not empty, repeat this code
   while !name.empty? do
     #add the student has to the array
@@ -56,6 +56,9 @@ def print_header
 end
 def print(students)
   while students.count >= 1
+    if name = ""
+      return
+    end
     students.each_with_index do |student, i|
         puts "#{i + 1} #{student[:name]} (#{student[:cohort]} cohort)
         hobby: #{ student[:hobbies]}
