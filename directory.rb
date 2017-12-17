@@ -22,6 +22,7 @@ def show_students
 end
 
 def process(selection)
+  puts "Thank you for your input"
   case selection
     when "1"
       input_students
