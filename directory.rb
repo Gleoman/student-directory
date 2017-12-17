@@ -18,7 +18,7 @@ def input_students
       if students == 1
         puts "Now we have #{students.count} student"
       else
-        puts "Now we have #{students.count} student"
+        puts "Now we have #{students.count} students"
       end
     #get another name from the user
     name = gets.chomp
@@ -54,6 +54,7 @@ def print_header
   puts "The students of Villains Academy".center(5)
   puts "-------------".center(5)
 end
+
 def print(students)
   while students.count >= 1
     if name = ""
