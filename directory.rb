@@ -3,7 +3,7 @@
 def interactive_menu
   loop do
     print_menu
-    process(gets.chomp)
+    process(STDIN.gets.chomp)
   end
 end
 
@@ -44,14 +44,14 @@ def input_students
   puts "To finish, and/or if you enter a typo and need to begin again,
         just hit return twice"
   #get the first name
-  name = gets.chomp
+  name = STDIN.gets.chomp
   #while the name is not empty, repeat this code
   while !name.empty? do
     #add the student has to the array
-    cohort = gets.chomp
-    hobbies = gets.chomp
-    born = gets.chomp
-    height = gets.chomp
+    cohort = STDIN.gets.chomp
+    hobbies = STDIN.gets.chomp
+    born = STDIN.gets.chomp
+    height = STDIN.gets.chomp
     @students << {name: name, cohort: cohort, hobbies: hobbies, born: born, height: height}
       if @students == 1
         puts "Now we have #{@students.count} student"
@@ -59,7 +59,7 @@ def input_students
         puts "Now we have #{@students.count} students"
       end
     #get another name from the user
-    name = gets.chomp
+    name = STDIN.gets.chomp
   end
 end
 
@@ -78,7 +78,7 @@ def sort_by_cohort
 
     puts "Please enter a cohort to list"
     puts sorted_by_cohort
-    sorted_cohort = gets.chomp
+    sorted_cohort = STDIN.gets.chomp
     sorted_by_cohort.each do |cohort, name|
       if cohort == sorted_cohort
         puts "#{name.join(", ")}"
@@ -125,7 +125,7 @@ def save_students
     file.close
 end
 
-def load_students
+def load_students(filename = "students.csv")
   file = File.open("students.csv", "r")
   file.readlines.each do |line|
   name, cohort = line.chomp.split (",")
@@ -133,6 +133,19 @@ def load_students
   end
   file.close
 end
+
+def try_load_students
+  filename = ARGV.first #first argument from the command line
+  return if filename.nil? #get out of the method if it isn't given
+  if File.exists?(filename) #if it exists
+    load_students(filename)
+      puts "Loaded #{@students.count} from #{filename}"
+    else #if it doesn't exist
+      puts "Sorry, #{filename} doesn't exist."
+      exit #quit the program
+    end
+end
 #nothing happens until we call the methods
+try_load_students
 interactive_menu
 sort_by_cohort
